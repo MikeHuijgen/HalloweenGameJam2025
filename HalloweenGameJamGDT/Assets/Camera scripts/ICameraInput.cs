@@ -2,10 +2,7 @@
 public interface ICameraInput
 {
     /// <summary>
-    /// Geeft de input delta terug: (yaw, pitch, zoom)
-    /// yaw = horizontale draai
-    /// pitch = verticale draai
-    /// zoom = scroll/zoom input
+    /// Called every Update to sample input. returns (yawDelta, pitchDelta, zoomDelta)
     /// </summary>
     (float yaw, float pitch, float zoom) Sample();
 }
