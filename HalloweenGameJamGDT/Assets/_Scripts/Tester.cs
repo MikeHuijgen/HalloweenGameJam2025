@@ -1,16 +1,11 @@
+using System;
 using UnityEngine;
 
-public class Tester : GenericSingleton<Tester>
+public class Tester : MonoBehaviour, IInteractTable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Interact(Action action)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        print($"Interacted with: {gameObject.name}");
+        action();
     }
 }

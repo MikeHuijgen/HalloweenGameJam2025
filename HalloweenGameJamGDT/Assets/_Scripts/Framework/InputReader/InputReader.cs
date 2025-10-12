@@ -18,14 +18,17 @@ public class InputReader : GenericSingleton<InputReader>
     private void SubToEvents()
     {
         _playerInput.actions["Move"].performed += OnMoveActionPreformed;
+        _playerInput.actions["Interact"].performed += OnInteractActionPreformed;
     }
 
     private void UnSubFromEvents()
     {
         _playerInput.actions["Move"].performed -= OnMoveActionPreformed;
+        _playerInput.actions["Interact"].performed -= OnInteractActionPreformed;
     }
 
     private void OnMoveActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.MoveState);
+    private void OnInteractActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.InteractState);
 
     public Vector2 GetMoveValue => _playerInput.actions["Move"].ReadValue<Vector2>();
 }
