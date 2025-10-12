@@ -18,10 +18,5 @@ public class IdleState : BasePlayerState
 
     }
 
-    public override void StateUpdate(float deltaTime)
-    {
-
-    }
-
     public override string ToString() => "Idle State";
 }
