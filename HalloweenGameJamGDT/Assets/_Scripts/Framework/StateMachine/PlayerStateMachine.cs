@@ -6,13 +6,9 @@ public class PlayerStateMachine : BaseStateMachine
     private void OnPlayerStateInput(object sender, PlayerStateType newPlayerStateType)
     {
         var newState = GetStateByPlayerStateType(newPlayerStateType);
-    }
 
-    protected override void SwitchState()
-    {
-        current_state?.StateExit();
-        //current_state = GetStateByPlayerStateType(StateType);
-        current_state?.StateEnter();
+        if (newState == null) return;
+        SwitchState(newState);
     }
 
     private BaseState GetStateByPlayerStateType(PlayerStateType playerStateType)
@@ -26,5 +22,16 @@ public class PlayerStateMachine : BaseStateMachine
         }
 
         return null;
+    }
+
+    private void OnEnable() => InputReader.Instance.OnPlayerStateInput += OnPlayerStateInput;
+    private void OnDisable() => InputReader.Instance.OnPlayerStateInput -= OnPlayerStateInput;
+
+    protected override void OnStateComplete()
+    {
+        var newState = GetStateByPlayerStateType(PlayerStateType.IdleState);
+
+        if (newState == null) return;
+        SwitchState(newState);      
     }
 }

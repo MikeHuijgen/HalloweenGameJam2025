@@ -1,10 +1,11 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public abstract class BaseState : MonoBehaviour
 {
-    public abstract void StateEnter();
-    public abstract void StateUpdate();
-    public abstract void StateFixedUpdate();
+    protected Action OnStateComplete;
+    public abstract void StateEnter(Action action);
+    public abstract void StateUpdate(float deltaTime);
+    public virtual void StateFixedUpdate(float fixedDeltaTime){}
     public abstract void StateExit();
 }
