@@ -25,7 +25,7 @@ public class InputReader : GenericSingleton<InputReader>
         _playerInput.actions["Move"].performed -= OnMoveActionPreformed;
     }
 
-    private void OnMoveActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.WalkState);
+    private void OnMoveActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.MoveState);
 
     public Vector2 GetMoveValue => _playerInput.actions["Move"].ReadValue<Vector2>();
 }

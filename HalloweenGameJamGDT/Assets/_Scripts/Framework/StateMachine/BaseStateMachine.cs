@@ -4,8 +4,7 @@ using UnityEngine.Events;
 
 public abstract class BaseStateMachine : MonoBehaviour
 {
-    public UnityEvent<BaseState> OnStateSwitch;
-    protected BaseState current_state;
+    [SerializeField] protected BaseState current_state;
     protected BaseState[] available_states;
     protected virtual void Awake() => available_states = GetComponents<BaseState>();
     
@@ -14,8 +13,6 @@ public abstract class BaseStateMachine : MonoBehaviour
         current_state?.StateExit();
         current_state = newState;
         current_state?.StateEnter(OnStateComplete);
-
-        OnStateSwitch?.Invoke(current_state);
     }
 
     private void Update() => current_state?.StateUpdate(Time.deltaTime);

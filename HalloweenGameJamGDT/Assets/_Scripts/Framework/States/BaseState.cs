@@ -8,4 +8,5 @@ public abstract class BaseState : MonoBehaviour
     public abstract void StateUpdate(float deltaTime);
     public virtual void StateFixedUpdate(float fixedDeltaTime){}
     public abstract void StateExit();
+    public override abstract string ToString();
 }

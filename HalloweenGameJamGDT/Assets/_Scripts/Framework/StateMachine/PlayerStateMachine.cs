@@ -3,12 +3,23 @@ using UnityEngine;
 
 public class PlayerStateMachine : BaseStateMachine
 {
+    public static EventHandler<BaseState> OnSwitchPlayerState;
+    [SerializeField] private BaseState defaultState;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        SwitchState(defaultState);
+        OnSwitchPlayerState?.Invoke(this, current_state);
+    }
+
     private void OnPlayerStateInput(object sender, PlayerStateType newPlayerStateType)
     {
         var newState = GetStateByPlayerStateType(newPlayerStateType);
 
         if (newState == null) return;
         SwitchState(newState);
+        OnSwitchPlayerState?.Invoke(this, current_state);
     }
 
     private BaseState GetStateByPlayerStateType(PlayerStateType playerStateType)
@@ -29,9 +40,7 @@ public class PlayerStateMachine : BaseStateMachine
 
     protected override void OnStateComplete()
     {
-        var newState = GetStateByPlayerStateType(PlayerStateType.IdleState);
-
-        if (newState == null) return;
-        SwitchState(newState);      
+        SwitchState(defaultState);    
+        OnSwitchPlayerState?.Invoke(this, current_state);  
     }
 }

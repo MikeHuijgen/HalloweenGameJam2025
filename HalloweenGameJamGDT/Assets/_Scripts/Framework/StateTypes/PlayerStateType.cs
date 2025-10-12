@@ -1,7 +1,7 @@
 public enum PlayerStateType
 {
     IdleState,
-    WalkState,
+    MoveState,
     JumpState,
     CutSceneState
 }
