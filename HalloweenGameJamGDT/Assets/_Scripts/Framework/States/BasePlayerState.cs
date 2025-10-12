@@ -8,5 +8,5 @@ public abstract class BasePlayerState : BaseState
     public bool CanStateBeInterrupted => can_be_interrupted;
     public PlayerStateType GetPlayerStateType => playerStateType;
 
-    public abstract void StateHasBeenInterrupted();
+    public virtual void StateHasBeenInterrupted(){}
 }

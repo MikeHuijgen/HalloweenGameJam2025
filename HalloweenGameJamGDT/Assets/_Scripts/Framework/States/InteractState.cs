@@ -4,25 +4,20 @@ using UnityEngine;
 public class InteractState : BasePlayerState
 {
     [SerializeField] private InteractTableDetector interactTableDetector;
+    private InteractTable _currentInteractTable;
+
     public override void StateEnter(Action action)
     {
         OnStateComplete = action;
-        var interactTables = interactTableDetector.GetInteractTables;
+        _currentInteractTable = interactTableDetector.GetClosetsInteractTable;
 
-        foreach (var interactTable in interactTables)
-        {
-            interactTable.Interact(OnInteractionComplete);
-        }
+        _currentInteractTable.UpdateInteractTableUI(false);
+        _currentInteractTable.Interact(OnInteractionComplete);
     }
 
     public override void StateExit()
     {
-        
-    }
-
-    public override void StateHasBeenInterrupted()
-    {
-        
+        _currentInteractTable.UpdateInteractTableUI(true);  
     }
 
     private void OnInteractionComplete()
