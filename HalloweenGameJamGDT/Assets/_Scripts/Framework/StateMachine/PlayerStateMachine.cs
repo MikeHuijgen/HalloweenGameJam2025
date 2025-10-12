@@ -15,9 +15,13 @@ public class PlayerStateMachine : BaseStateMachine
 
     private void OnPlayerStateInput(object sender, PlayerStateType newPlayerStateType)
     {
-        var newState = GetStateByPlayerStateType(newPlayerStateType);
+        var currentPlayerState = (BasePlayerState)current_state;
+        if (currentPlayerState.GetPlayerStateType == newPlayerStateType) return;
+        if (!currentPlayerState.CanStateBeInterrupted) return;
 
+        var newState = GetStateByPlayerStateType(newPlayerStateType);
         if (newState == null) return;
+
         SwitchState(newState);
         OnSwitchPlayerState?.Invoke(this, current_state);
     }

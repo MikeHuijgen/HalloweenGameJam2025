@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public abstract class BaseStateMachine : MonoBehaviour
 {
-    [SerializeField] protected BaseState current_state;
+    protected BaseState current_state;
     protected BaseState[] available_states;
     protected virtual void Awake() => available_states = GetComponents<BaseState>();
     
