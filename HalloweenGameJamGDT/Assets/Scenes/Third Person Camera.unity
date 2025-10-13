@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 381774699}
   - component: {fileID: 381774698}
   - component: {fileID: 381774697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 518053170}
   - component: {fileID: 518053169}
   - component: {fileID: 518053168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -746,8 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19ce433abb14aa4a89f88b9dd865bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 1
-  zoomSensitivity: 2
+  sensitivity: 10
+  zoomSensitivity: 0
 --- !u!114 &1548648580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,22 +761,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1888698239}
-  offset: {x: 0.5, y: 1.6, z: -3}
-  minDistance: 1
-  maxDistance: 6
+  pivotOffset: {x: 0, y: 1.2, z: 0}
+  camOffset: {x: 0, y: 1, z: -6}
   yaw: 0
   pitch: 10
   minPitch: -35
   maxPitch: 70
-  positionSmoothing: 0.5
-  rotationSmoothing: 0.5
-  zoomSmoothing: 0
+  minDistance: 0.2
+  maxDistance: 6
+  zoomSpeed: 0
   collisionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  collisionRadius: 0.25
-  collisionOffset: 0.1
-  collisionSmooth: 10
+    m_Bits: 128
+  collisionRadius: 0.3
+  collisionOffset: 0.2
   inputProviderMono: {fileID: 1548648579}
 --- !u!1 &1888698238
 GameObject:

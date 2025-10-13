@@ -1,64 +1,58 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Camera))]
 public class ThirdPersonCamera : MonoBehaviour
 {
     [Header("Target")]
-    public Transform target; // speler
+    public Transform target;
 
-    [Header("Offset & Distance")]
-    public Vector3 offset = new Vector3(0.5f, 1.6f, -3f);
-    public float minDistance = 1f;
-    public float maxDistance = 6f;
+    [Header("Camera Offset")]
+    public Vector3 pivotOffset = new Vector3(0f, 1.6f, 0f);
+    public Vector3 camOffset = new Vector3(0f, 0f, -3f);
 
-    [Header("Rotation")]
+    [Header("Rotation Settings")]
     public float yaw = 0f;
     public float pitch = 10f;
     public float minPitch = -35f;
     public float maxPitch = 70f;
 
-    [Header("Smoothing")]
-    [Range(0f, 1f)] public float positionSmoothing = 0.12f;
-    [Range(0f, 1f)] public float rotationSmoothing = 0.08f;
-    public float zoomSmoothing = 0.1f;
+    [Header("Zoom Settings")]
+    public float minDistance = 1f;
+    public float maxDistance = 6f;
+    public float zoomSpeed = 2f;
 
-    [Header("Collision")]
+    [Header("Collision Settings")]
     public LayerMask collisionMask = ~0;
-    public float collisionRadius = 0.25f;
-    public float collisionOffset = 0.1f;
-    public float collisionSmooth = 10f;
+    public float collisionRadius = 0.3f;
+    public float collisionOffset = 0.2f;
 
     [Header("Input")]
-    public MonoBehaviour inputProviderMono; // assign DefaultCameraInput
+    public MonoBehaviour inputProviderMono;
 
     private ICameraInput inputProvider;
-    private Rigidbody rb;
-    private float targetDistance;
-    private float currentDistance;
+    private float desiredDistance;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-
         if (inputProviderMono != null && inputProviderMono is ICameraInput)
             inputProvider = inputProviderMono as ICameraInput;
         else
             Debug.LogWarning("No ICameraInput assigned!");
 
-        targetDistance = offset.magnitude;
-        currentDistance = targetDistance;
+        desiredDistance = camOffset.magnitude;
     }
 
-    void Start()
+    private void Start()
     {
-        Vector3 e = transform.eulerAngles;
-        yaw = e.y;
-        pitch = e.x;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    void LateUpdate()
     {
+        if (target == null) return;
+
+        // --- INPUT ---
         if (inputProvider != null)
         {
             var (dyaw, dpitch, dzoom) = inputProvider.Sample();
@@ -66,44 +60,34 @@ public class ThirdPersonCamera : MonoBehaviour
             pitch += dpitch;
             pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-            targetDistance = Mathf.Clamp(targetDistance + dzoom, minDistance, maxDistance);
+            desiredDistance = Mathf.Clamp(desiredDistance + dzoom * 
+                zoomSpeed, minDistance, maxDistance);
         }
-    }
 
-    void FixedUpdate()
-    {
-        if (target == null) return;
-
-        // Rotatie berekenen
+        // --- ROTATION ---
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0f);
 
-        // Gewenste positie vóór collision
-        Vector3 desiredPosition = target.position + rotation * offset.normalized * targetDistance;
+        // Pivot (hoogte van de speler)
+        Vector3 pivot = target.position + pivotOffset;
 
-        // Collision check: van target naar gewenste camera
-        Vector3 direction = desiredPosition - (target.position + Vector3.up * 1.4f);
-        float distance = direction.magnitude;
+        // Richting van camera
+        Vector3 direction = rotation * Vector3.back;
 
-        RaycastHit hit;
-        float finalDistance = targetDistance;
-
-        if (Physics.SphereCast(target.position + Vector3.up * 1.4f, collisionRadius, direction.normalized, out hit, distance, collisionMask))
+        // --- COLLISION ---
+        float targetDistance = desiredDistance;
+        if (Physics.SphereCast(pivot, collisionRadius, 
+            direction, out RaycastHit hit, 
+            desiredDistance, collisionMask, 
+            QueryTriggerInteraction.Ignore))
         {
-            finalDistance = Mathf.Clamp(hit.distance - collisionOffset, minDistance, targetDistance);
+            targetDistance = Mathf.Max(hit.distance - collisionOffset, minDistance);
         }
 
-        // Smooth collision afstand
-        currentDistance = Mathf.Lerp(currentDistance, finalDistance, Time.fixedDeltaTime * collisionSmooth);
+        // --- POSITIE ---
+        Vector3 cameraPosition = pivot + direction * targetDistance;
+        transform.position = cameraPosition;
 
-        // Final positie
-        Vector3 finalPosition = target.position + rotation * offset.normalized * currentDistance;
-
-        // Smooth beweging
-        rb.MovePosition(Vector3.Lerp(rb.position, finalPosition, 1f - Mathf.Pow(1f - positionSmoothing, Time.fixedDeltaTime * 60f)));
-
-        // Camera kijkt altijd naar speler
-        Vector3 lookTarget = target.position + Vector3.up * 1.4f;
-        Quaternion desiredRot = Quaternion.LookRotation(lookTarget - rb.position, Vector3.up);
-        rb.MoveRotation(Quaternion.Slerp(rb.rotation, desiredRot, 1f - Mathf.Pow(1f - rotationSmoothing, Time.fixedDeltaTime * 60f)));
+        // Kijk altijd naar speler
+        transform.rotation = Quaternion.LookRotation(pivot - cameraPosition, Vector3.up);
     }
 }
