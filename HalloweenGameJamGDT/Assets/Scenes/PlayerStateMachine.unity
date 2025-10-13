@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 1474057595}
   - component: {fileID: 1474057594}
   - component: {fileID: 1474057593}
-  - component: {fileID: 1474057592}
+  - component: {fileID: 1474057597}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -441,18 +441,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1474057592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474057591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3065fd4771a0f8a419b062e82d024e07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1474057593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -543,6 +531,23 @@ Transform:
   - {fileID: 1962778965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1474057597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474057591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9be7da122a8b141a7638c2c983349f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialog:
+  - {fileID: 11400000, guid: 8f830f5fdcae5374d9b5526b4d06501c, type: 2}
+  - {fileID: 11400000, guid: e65da9ad00f1ce44faa715f18c5c43d9, type: 2}
+  - {fileID: 11400000, guid: 085be5a506b765f4a9f5a465ec0c6f5a, type: 2}
+  - {fileID: 11400000, guid: d2df0de12e3c0904a9781adc8a7b3ff0, type: 2}
 --- !u!1 &1527126821
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +1000,7 @@ PrefabInstance:
     - target: {fileID: 4053948809743077832, guid: 932737e3044d58441ac0ec55c4bc23ee, type: 3}
       propertyPath: interactTable
       value: 
-      objectReference: {fileID: 1474057592}
+      objectReference: {fileID: 1474057597}
     - target: {fileID: 4778512182493684482, guid: 932737e3044d58441ac0ec55c4bc23ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

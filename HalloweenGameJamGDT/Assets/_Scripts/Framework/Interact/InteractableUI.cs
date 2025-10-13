@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractTableUI : MonoBehaviour
+public class InteractableUI : MonoBehaviour
 {
     [SerializeField] private Interactable interactTable;
     [SerializeField] private GameObject InteractableUIGameObject;
