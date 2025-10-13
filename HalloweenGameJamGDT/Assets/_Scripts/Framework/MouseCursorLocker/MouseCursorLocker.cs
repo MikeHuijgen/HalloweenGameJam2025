@@ -1,7 +1,15 @@
 using UnityEngine;
 
-public class MouseCursorLocker : MonoBehaviour
+public class MouseCursorLocker
 {
-    public void LockCursor() => Cursor.lockState = CursorLockMode.Locked;
-    public void UnLockCursor() => Cursor.lockState = CursorLockMode.None;
+    public void LockCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    public void UnLockCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
 }
