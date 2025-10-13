@@ -5,7 +5,7 @@ public class PlayerStateMachine : BaseStateMachine
 {
     public static EventHandler<BaseState> OnSwitchPlayerState;
     [SerializeField] private BaseState defaultState;
-    [SerializeField] private InteractTableDetector interactTableDetector;
+    [SerializeField] private InteractableDetector interactTableDetector;
 
     protected override void Awake()
     {
@@ -19,7 +19,7 @@ public class PlayerStateMachine : BaseStateMachine
         var currentPlayerState = (BasePlayerState)current_state;
         if (currentPlayerState.GetPlayerStateType == newPlayerStateType) return;
         if (!currentPlayerState.CanStateBeInterrupted) return;
-        if (newPlayerStateType == PlayerStateType.InteractState && !interactTableDetector.HasInteractTables) return;
+        if (newPlayerStateType == PlayerStateType.InteractState && !interactTableDetector.HasInteractables) return;
 
         var newState = GetStateByPlayerStateType(newPlayerStateType);
         if (newState == null) return;

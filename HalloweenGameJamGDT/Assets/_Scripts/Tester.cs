@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Tester : InteractTable
+public class Tester : Interactable
 {
     public override void Interact(Action action)
     {

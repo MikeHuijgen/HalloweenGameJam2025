@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4053948809743077832}
   - component: {fileID: 5509777503030007394}
   m_Layer: 0
-  m_Name: InteractTableUI
+  m_Name: InteractableUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactTable: {fileID: 0}
-  InteractTableUIGameObject: {fileID: 1101610913542592739}
+  InteractableUIGameObject: {fileID: 1101610913542592739}
 --- !u!114 &5509777503030007394
 MonoBehaviour:
   m_ObjectHideFlags: 0
