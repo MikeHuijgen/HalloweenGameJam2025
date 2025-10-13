@@ -11,10 +11,10 @@ public class DefaultCameraInput : MonoBehaviour, ICameraInput
 
     public (float yaw, float pitch, float zoom) Sample()
     {
-        // Gebruik Unity legacy input — makkelijk om later te vervangen door nieuw systeem
-        float yaw = Input.GetAxis("Mouse X") * sensitivity;
-        float pitch = -Input.GetAxis("Mouse Y") * sensitivity; // inverted Y off by default (negative)
-        float zoom = -Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity;
+        // Gebruik Unity legacy input ï¿½ makkelijk om later te vervangen door nieuw systeem
+        float yaw = InputReader.Instance.GetMouseDelta.x * sensitivity * Time.deltaTime;
+        float pitch = -InputReader.Instance.GetMouseDelta.y * sensitivity * Time.deltaTime; // inverted Y off by default (negative)
+        float zoom = -Input.GetAxis("Mouse ScrollWheel") * zoomSensitivity * Time.deltaTime;
         return (yaw, pitch, zoom);
     }
 }

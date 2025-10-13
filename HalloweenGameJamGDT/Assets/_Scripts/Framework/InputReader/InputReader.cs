@@ -31,4 +31,5 @@ public class InputReader : GenericSingleton<InputReader>
     private void OnInteractActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.InteractState);
 
     public Vector2 GetMoveValue => _playerInput.actions["Move"].ReadValue<Vector2>();
+    public Vector2 GetMouseDelta => _playerInput.actions["Camera"].ReadValue<Vector2>();
 }
