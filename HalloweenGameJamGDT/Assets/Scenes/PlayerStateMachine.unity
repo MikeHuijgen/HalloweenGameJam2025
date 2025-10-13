@@ -338,14 +338,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 479118723}
-    - target: {fileID: 5158899510211964850, guid: 06571d86a88493d43b450a6a8706e057, type: 3}
-      propertyPath: m_VolumeTrigger
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5158899510211964850, guid: 06571d86a88493d43b450a6a8706e057, type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -601,10 +593,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog:
-  - {fileID: 11400000, guid: 8f830f5fdcae5374d9b5526b4d06501c, type: 2}
   - {fileID: 11400000, guid: e65da9ad00f1ce44faa715f18c5c43d9, type: 2}
   - {fileID: 11400000, guid: 085be5a506b765f4a9f5a465ec0c6f5a, type: 2}
   - {fileID: 11400000, guid: d2df0de12e3c0904a9781adc8a7b3ff0, type: 2}
+  - {fileID: 11400000, guid: 8f830f5fdcae5374d9b5526b4d06501c, type: 2}
 --- !u!1 &1527126821
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +853,10 @@ PrefabInstance:
     - target: {fileID: 2912955675828157845, guid: 04b96e3adfeaa9b45a76cbbdb4dcd70a, type: 3}
       propertyPath: m_Name
       value: DialogSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773377591731218928, guid: 04b96e3adfeaa9b45a76cbbdb4dcd70a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

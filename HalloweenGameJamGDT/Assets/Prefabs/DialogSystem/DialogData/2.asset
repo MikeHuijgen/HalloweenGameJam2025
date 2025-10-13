@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535ebe3bb51baaf42aaa90643ed25dcf, type: 3}
   m_Name: 2
   m_EditorClassIdentifier: 
+  speakersName: Mike
   dialogText: Tessa

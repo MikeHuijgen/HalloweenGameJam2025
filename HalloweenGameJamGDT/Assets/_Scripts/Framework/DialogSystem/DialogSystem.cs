@@ -29,7 +29,8 @@ public class DialogSystem : MonoBehaviour
         _currentDialog = dialogInteractArgs.dialogDataList;
         OnDialogComplete = dialogInteractArgs.OnDialogComplete;
 
-        dialogSystemUI.UpdateUI(GetNextDialogText().dialogText);
+        dialogSystemUI.UpdateUI(GetNextDialogText().dialogText, GetNextDialogText().speakersName);
+        _currentDialogIndex++;
     }
 
     private void OnNextTextInput(object sender, EventArgs e)
@@ -41,15 +42,15 @@ public class DialogSystem : MonoBehaviour
         }
         else
         {
-            dialogSystemUI.UpdateUI(GetNextDialogText().dialogText);
+            dialogSystemUI.UpdateUI(GetNextDialogText().dialogText, GetNextDialogText().speakersName);
+            _currentDialogIndex++;
         }
     }
-    
+
 
     private DialogData GetNextDialogText()
     {
         var nextDialogText = _currentDialog[_currentDialogIndex];
-        _currentDialogIndex++;
         return nextDialogText;
     }
 }
