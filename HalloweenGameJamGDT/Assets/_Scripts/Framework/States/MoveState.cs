@@ -8,10 +8,13 @@ public class MoveState : BasePlayerState
 
     private Vector2 _moveDirection;
     private Rigidbody _rigidbody;
+    private Transform _cameraTransform;
 
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+
+        _cameraTransform = Camera.main.transform;
     }
 
     public override void StateEnter(Action action)
@@ -36,7 +39,26 @@ public class MoveState : BasePlayerState
 
     public override void StateFixedUpdate(float fixedDeltaTime)
     {
-          _rigidbody.linearVelocity = new Vector3(_moveDirection.x, _rigidbody.linearVelocity.y, _moveDirection.y) * moveSpeed * fixedDeltaTime;      
+        if (_moveDirection == Vector2.zero) return;
+
+        Vector3 forward = _cameraTransform.forward;
+        Vector3 right = _cameraTransform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 move = (forward * _moveDirection.y + right * _moveDirection.x).normalized;
+
+        _rigidbody.linearVelocity = move * moveSpeed * fixedDeltaTime;
+
+        if (move != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(move);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 10f * fixedDeltaTime);
+        }
+
     }
 
     public override void StateHasBeenInterrupted()
