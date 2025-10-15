@@ -19,7 +19,6 @@ public class InputReader : GenericSingleton<InputReader>
 
     private void SubToEvents()
     {
-        _playerInput.actions["Move"].performed += OnMoveActionPreformed;
         _playerInput.actions["Interact"].performed += OnInteractActionPreformed;
         _playerInput.actions["Jump"].performed += OnJumpActionPreformed;
 
@@ -28,14 +27,17 @@ public class InputReader : GenericSingleton<InputReader>
 
     private void UnSubFromEvents()
     {
-        _playerInput.actions["Move"].performed -= OnMoveActionPreformed;
         _playerInput.actions["Interact"].performed -= OnInteractActionPreformed;
         _playerInput.actions["Jump"].performed -= OnJumpActionPreformed;
 
         _playerInput.actions["NextText"].performed -= OnNextTextPreformed;
     }
 
-    private void OnMoveActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.MoveState);
+    private void Update()
+    {
+        if (_playerInput.actions["Move"].inProgress) OnPlayerStateInput?.Invoke(this, PlayerStateType.MoveState);
+    }
+
     private void OnInteractActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.InteractState);
     private void OnJumpActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.JumpState);
     private void OnNextTextPreformed(InputAction.CallbackContext context) => OnNextTextInput?.Invoke(this, null);
