@@ -21,6 +21,7 @@ public class InputReader : GenericSingleton<InputReader>
     {
         _playerInput.actions["Move"].performed += OnMoveActionPreformed;
         _playerInput.actions["Interact"].performed += OnInteractActionPreformed;
+        _playerInput.actions["Jump"].performed += OnJumpActionPreformed;
 
         _playerInput.actions["NextText"].performed += OnNextTextPreformed;
     }
@@ -29,12 +30,14 @@ public class InputReader : GenericSingleton<InputReader>
     {
         _playerInput.actions["Move"].performed -= OnMoveActionPreformed;
         _playerInput.actions["Interact"].performed -= OnInteractActionPreformed;
+        _playerInput.actions["Jump"].performed -= OnJumpActionPreformed;
 
         _playerInput.actions["NextText"].performed -= OnNextTextPreformed;
     }
 
     private void OnMoveActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.MoveState);
     private void OnInteractActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.InteractState);
+    private void OnJumpActionPreformed(InputAction.CallbackContext context) => OnPlayerStateInput?.Invoke(this, PlayerStateType.JumpState);
     private void OnNextTextPreformed(InputAction.CallbackContext context) => OnNextTextInput?.Invoke(this, null);
 
     public Vector2 GetMoveValue => _playerInput.actions["Move"].ReadValue<Vector2>();
