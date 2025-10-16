@@ -12,6 +12,10 @@ public class TMPButton : MonoBehaviour, IPointerClickHandler
     [Header("CameraMover (optioneel)")]
     public CameraMover cameraMover;
 
+    [Header("UI Elementen die moeten verdwijnen bij 'Play'")]
+    public GameObject playText;
+    public GameObject quitText;
+
     void Start()
     {
         tmpText = GetComponent<TextMeshProUGUI>();
@@ -20,16 +24,31 @@ public class TMPButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Toggle kleur feedback
-        isClicked = !isClicked;
-        tmpText.color = isClicked ? clickedColor : originalColor;
-
         Debug.Log($"Button '{tmpText.text}' is aangeklikt!");
+
+        // Als dit de Play-knop is
+        if (tmpText.text.ToLower().Contains("play"))
+        {
+            // Verberg de Play- en Quit-teksten
+            if (playText != null) playText.SetActive(false);
+            if (quitText != null) quitText.SetActive(false);
+        }
+
+        // Als dit de Quit-knop is
+        if (tmpText.text.ToLower().Contains("quit"))
+        {
+            Debug.Log("Afsluiten...");
+            Application.Quit();
+        }
 
         // Camera bewegen als cameraMover is toegewezen
         if (cameraMover != null)
         {
             cameraMover.MoveCamera();
         }
+
+        // Eventueel visuele klikfeedback
+        isClicked = !isClicked;
+        tmpText.color = isClicked ? clickedColor : originalColor;
     }
 }

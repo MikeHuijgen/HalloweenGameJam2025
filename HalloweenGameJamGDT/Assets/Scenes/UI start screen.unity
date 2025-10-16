@@ -344,6 +344,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: playText
+      value: 
+      objectReference: {fileID: 1739404616}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: quitText
+      value: 
+      objectReference: {fileID: 2130432355}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
       propertyPath: cameraMover
       value: 
       objectReference: {fileID: 2112638620}
@@ -435,6 +443,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1739404616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8506170936811155669, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+  m_PrefabInstance: {fileID: 1403438192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112638615
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +600,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetOffset: {x: 5, y: 0, z: 0}
   moveSpeed: 0.2
+--- !u!1 &2130432355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4224592716409301496, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+  m_PrefabInstance: {fileID: 1403438192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
