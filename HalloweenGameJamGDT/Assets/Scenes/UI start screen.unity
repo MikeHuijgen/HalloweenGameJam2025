@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!23 &108280296 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 692737049245927560, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+  m_PrefabInstance: {fileID: 1403438192}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &874833143
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,17 +349,57 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
-      propertyPath: playText
+      propertyPath: mainCamera
       value: 
-      objectReference: {fileID: 1739404616}
-    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
-      propertyPath: quitText
-      value: 
-      objectReference: {fileID: 2130432355}
+      objectReference: {fileID: 0}
     - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
       propertyPath: cameraMover
       value: 
       objectReference: {fileID: 2112638620}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultColor.g
+      value: 0.5817109
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultColor.r
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: emissiveObject
+      value: 
+      objectReference: {fileID: 108280296}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: emissionChanger
+      value: 
+      objectReference: {fileID: 1461463669}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultBackgroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultBackgroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: defaultBackgroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: playClickedBackgroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: playClickedBackgroundColor.g
+      value: 0.72062695
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334004898821859941, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+      propertyPath: playClickedBackgroundColor.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
     - target: {fileID: 8239624739931495130, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
       propertyPath: m_Name
       value: TvPeople_Female_v1 (1)
@@ -364,6 +409,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+--- !u!114 &1461463669 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7801825556170359120, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
+  m_PrefabInstance: {fileID: 1403438192}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f838dfa2159b6a4faab1faf0af3ec80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1594615291
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,11 +499,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1739404616 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8506170936811155669, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
-  m_PrefabInstance: {fileID: 1403438192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112638615
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,11 +651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetOffset: {x: 5, y: 0, z: 0}
   moveSpeed: 0.2
---- !u!1 &2130432355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4224592716409301496, guid: fd13fd49ebec0204f8297c7cf2d04713, type: 3}
-  m_PrefabInstance: {fileID: 1403438192}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

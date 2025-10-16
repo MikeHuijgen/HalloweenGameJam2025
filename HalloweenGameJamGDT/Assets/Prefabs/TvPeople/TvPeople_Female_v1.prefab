@@ -1872,6 +1872,8 @@ MonoBehaviour:
   cameraMover: {fileID: 0}
   playText: {fileID: 8506170936811155669}
   quitText: {fileID: 4224592716409301496}
+  emissionChanger: {fileID: 7801825556170359120}
+  defaultColor: {r: 0.6320754, g: 0.5817109, b: 0, a: 1}
 --- !u!1 &8624492991737988521
 GameObject:
   m_ObjectHideFlags: 0

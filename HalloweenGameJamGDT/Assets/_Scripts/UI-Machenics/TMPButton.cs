@@ -16,10 +16,21 @@ public class TMPButton : MonoBehaviour, IPointerClickHandler
     public GameObject playText;
     public GameObject quitText;
 
+    [Header("Emission Controller (voor schermkleur)")]
+    public EmissionChanger emissionChanger;
+    public Color defaultColor = Color.yellow; // standaard geel
+
     void Start()
     {
         tmpText = GetComponent<TextMeshProUGUI>();
         originalColor = tmpText.color;
+
+        // Zet schermkleur bij start meteen op geel
+        if (emissionChanger != null)
+        {
+            emissionChanger.SetEmissionColor(defaultColor);
+            emissionChanger.ChangeEmissionColor();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -32,6 +43,13 @@ public class TMPButton : MonoBehaviour, IPointerClickHandler
             // Verberg de Play- en Quit-teksten
             if (playText != null) playText.SetActive(false);
             if (quitText != null) quitText.SetActive(false);
+
+            // Zet scherm terug naar geel
+            if (emissionChanger != null)
+            {
+                emissionChanger.SetEmissionColor(defaultColor);
+                emissionChanger.ChangeEmissionColor();
+            }
         }
 
         // Als dit de Quit-knop is
@@ -39,6 +57,13 @@ public class TMPButton : MonoBehaviour, IPointerClickHandler
         {
             Debug.Log("Afsluiten...");
             Application.Quit();
+
+            // Ook bij quit: kleur terug naar geel
+            if (emissionChanger != null)
+            {
+                emissionChanger.SetEmissionColor(defaultColor);
+                emissionChanger.ChangeEmissionColor();
+            }
         }
 
         // Camera bewegen als cameraMover is toegewezen
